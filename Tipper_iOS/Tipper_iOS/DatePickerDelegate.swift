@@ -8,17 +8,19 @@
 
 import UIKit
 
-class DatePickerDelegate:NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
+class DatePickerDelegate:NSObject, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource {
     
     var selectedMonth: Int!;
     var selectedYear: Int!;
     let monthNames = ["ינואר", "פברואר", "מרץ", "אפריל", "מאי", "יוני", "יולי", "אוגוסט", "ספטמבר", "אוקטובר", "נובמבר" ,"דצמבר"];
     let today: NSDate;
+    var allShifts: [Shift]!;
         
-    override init() {
+    init(shifts: [Shift]) {
         today = NSDate();
         selectedMonth = NSCalendar.currentCalendar().component(NSCalendarUnit.Month, fromDate: today) - 1;
         selectedYear = NSCalendar.currentCalendar().component(NSCalendarUnit.Year, fromDate: today);
+        allShifts = shifts;
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
@@ -50,4 +52,22 @@ class DatePickerDelegate:NSObject, UIPickerViewDelegate, UIPickerViewDataSource 
         }
         
     }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1;
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return allShifts.count;
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("shift_table", forIndexPath: indexPath);
+        cell.textLabel!.text = "\(allShifts[indexPath.row].id)";
+        cell.backgroundColor = UIColor(netHex: 0x0288D1);
+        cell.textLabel!.textColor = UIColor.whiteColor();
+        return cell;
+    }
+    
+    
 }

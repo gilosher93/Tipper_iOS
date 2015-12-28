@@ -71,11 +71,11 @@ class Shift: NSManagedObject {
     }
     
     static func distanceOfMinutes(startTime: Double, endTime: Double)->Int{
-        let distance = Int(((endTime - startTime)/1000)/60);
+        let distance = startTime.distanceTo(endTime) / 60;
         if distance < 0 {
             return distanceOfMinutes(startTime, endTime: endTime + 24 * 60 * 60 * 1000);
         }
-        return distance;
+        return Int(distance);
     }
     
     func getSumOfHours()-> Float{

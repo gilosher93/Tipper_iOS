@@ -9,7 +9,6 @@
 import UIKit
 
 class SecondViewController: UIViewController{
-    
     var allShifts: [Shift]!;
     var navBar: UINavigationBar!;
     var datePicker: UIPickerView!;
@@ -20,7 +19,6 @@ class SecondViewController: UIViewController{
     var totalTips: UILabel!;
     var tabBarHeight: CGFloat!;
     var datePickerDelegate: DatePickerDelegate!;
-    var shiftTableDelegate: ShiftTableDelegate!;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,12 +31,11 @@ class SecondViewController: UIViewController{
         navBar = UINavigationBar(frame: CGRect(x: 0, y: UIApplication.sharedApplication().statusBarFrame.height, width: view.frame.width, height: 40))
         let navItem = UINavigationItem();
         navItem.title = "דוחות";
-        navItem.leftBarButtonItem = UIBarButtonItem(title: "הגדרות", style: UIBarButtonItemStyle.Plain, target: self, action: "openSettings");
         navBar.items = [navItem];
         view.addSubview(navBar);
-        notifyAllShifts();
-        datePickerDelegate = DatePickerDelegate();
-        shiftTableDelegate = ShiftTableDelegate(shifts: allShifts);
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+        allShifts = appDelegate.getShifts();
+        datePickerDelegate = DatePickerDelegate(shifts: allShifts);
         createViews();
     }
     
@@ -53,8 +50,8 @@ class SecondViewController: UIViewController{
         shiftTable = UITableView(frame: CGRect(x: 0, y: datePicker.frame.maxY, width: view.frame.width, height: view.frame.height - datePicker.frame.height - navBar.frame.height - UIApplication.sharedApplication().statusBarFrame.size.height - tabBarHeight - 50));
         shiftTable.backgroundColor = UIColor(netHex: 0x0288D1);
         shiftTable.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: "shift_table");
-        shiftTable.delegate = shiftTableDelegate;
-        shiftTable.dataSource = shiftTableDelegate;
+        shiftTable.delegate = datePickerDelegate;
+        shiftTable.dataSource = datePickerDelegate;
         view.addSubview(shiftTable);
         tableDetailsView = UIView(frame: CGRect(x: 0, y: shiftTable.frame.maxY, width: view.frame.width, height: 50))
         tableDetailsView.backgroundColor = UIColor(netHex: 0xFFC107);
@@ -77,14 +74,19 @@ class SecondViewController: UIViewController{
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
         allShifts = appDelegate.getShifts();
         print("number of shift: \(allShifts.count)");
-    }
-    
-    func openSettings(){
-        presentViewController(SettingsViewController(), animated: true, completion: nil);
+        datePickerDelegate = DatePickerDelegate(shifts: allShifts);
+        shiftTable.delegate = datePickerDelegate;
+        shiftTable.dataSource = datePickerDelegate;
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent;
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated);
+        shiftTable.resignFirstResponder();
+        notifyAllShifts();
     }
     
     override func didReceiveMemoryWarning() {

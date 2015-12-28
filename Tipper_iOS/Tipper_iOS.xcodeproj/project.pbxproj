@@ -19,7 +19,6 @@
 		46E761111C30542100AC3CFC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E761101C30542100AC3CFC /* SettingsViewController.swift */; };
 		46E761131C30542A00AC3CFC /* Shift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E761121C30542A00AC3CFC /* Shift.swift */; };
 		46E761151C3091D500AC3CFC /* DatePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E761141C3091D500AC3CFC /* DatePickerDelegate.swift */; };
-		46E761171C30948700AC3CFC /* ShiftTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E761161C30948700AC3CFC /* ShiftTableDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +57,6 @@
 		46E761101C30542100AC3CFC /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		46E761121C30542A00AC3CFC /* Shift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shift.swift; sourceTree = "<group>"; };
 		46E761141C3091D500AC3CFC /* DatePickerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerDelegate.swift; sourceTree = "<group>"; };
-		46E761161C30948700AC3CFC /* ShiftTableDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShiftTableDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,13 +112,12 @@
 				46E7610E1C3053F200AC3CFC /* SecondViewController.swift */,
 				46E761101C30542100AC3CFC /* SettingsViewController.swift */,
 				46E761121C30542A00AC3CFC /* Shift.swift */,
+				46E761141C3091D500AC3CFC /* DatePickerDelegate.swift */,
 				46E760E11C3053CA00AC3CFC /* Main.storyboard */,
 				46E760E71C3053CA00AC3CFC /* Assets.xcassets */,
 				46E760E91C3053CA00AC3CFC /* LaunchScreen.storyboard */,
 				46E760EC1C3053CA00AC3CFC /* Info.plist */,
 				46E760E41C3053CA00AC3CFC /* Tipper_iOS.xcdatamodeld */,
-				46E761141C3091D500AC3CFC /* DatePickerDelegate.swift */,
-				46E761161C30948700AC3CFC /* ShiftTableDelegate.swift */,
 			);
 			path = Tipper_iOS;
 			sourceTree = "<group>";
@@ -281,7 +278,6 @@
 				46E760E61C3053CA00AC3CFC /* Tipper_iOS.xcdatamodeld in Sources */,
 				46E760E01C3053CA00AC3CFC /* FirstViewController.swift in Sources */,
 				46E760DE1C3053CA00AC3CFC /* AppDelegate.swift in Sources */,
-				46E761171C30948700AC3CFC /* ShiftTableDelegate.swift in Sources */,
 				46E761151C3091D500AC3CFC /* DatePickerDelegate.swift in Sources */,
 				46E761131C30542A00AC3CFC /* Shift.swift in Sources */,
 				46E761111C30542100AC3CFC /* SettingsViewController.swift in Sources */,
@@ -509,6 +505,7 @@
 				46E761071C3053CA00AC3CFC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		46E761081C3053CA00AC3CFC /* Build configuration list for PBXNativeTarget "Tipper_iOSTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +514,7 @@
 				46E7610A1C3053CA00AC3CFC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		46E7610B1C3053CA00AC3CFC /* Build configuration list for PBXNativeTarget "Tipper_iOSUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +523,7 @@
 				46E7610D1C3053CA00AC3CFC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

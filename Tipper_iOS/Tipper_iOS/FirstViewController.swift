@@ -25,11 +25,11 @@ class FirstViewController: UIViewController {
     //tips views
     var tipsView: UIView!;
     var btnIncreaseTipsValue: UIButton!;
-    var lblTipsValue: UILabel!;
+    var lblSummaryValue: UILabel!;
     var btnDecreaseTipsValue: UIButton!;
     //summary views
     var summaryView: UIView!;
-    var lblSummaryValue: UILabel!;
+    var lblAverageSalaryPerHour: UILabel!;
     
     //drag views
     var dragView: UIView!;
@@ -48,6 +48,7 @@ class FirstViewController: UIViewController {
     var dailySalary: Float = 0;
     var dailySummary: Float = 0;
     var salaryPerHour: Float = 0;
+    var averageSalaryPerHour: Float = 0;
     var soundsAllowed = true;
     var startTime: NSDate?;
     var allShifts: [Shift]!;
@@ -65,6 +66,7 @@ class FirstViewController: UIViewController {
         let navItem = UINavigationItem();
         navItem.title = "טיפר";
         navItem.leftBarButtonItem = UIBarButtonItem(title: "הגדרות", style: UIBarButtonItemStyle.Plain, target: self, action: "openSettings");
+        navItem.rightBarButtonItem = UIBarButtonItem(title: "משמרת ידנית", style: UIBarButtonItemStyle.Plain, target: self, action: "CreateManualShift");
         navBar.items = [navItem];
         view.addSubview(navBar);
         
@@ -96,7 +98,7 @@ class FirstViewController: UIViewController {
         
         salaryView = UIView(frame: CGRect(x: 5, y: 5, width: activeView.frame.width / 2 - 5, height: activeView.frame.height / 6));
         let lblSalaryTitle = UILabel(frame: CGRect(x: 0, y: 0, width: salaryView.frame.width, height: salaryView.frame.height / 2));
-        lblSalaryTitle.text = "משכורת היום";
+        lblSalaryTitle.text = "שכר היום";
         lblSalaryTitle.textAlignment = .Center;
         lblSalaryTitle.font = UIFont.boldSystemFontOfSize(20);
         lblSalaryValue = UILabel(frame: CGRect(x: 0, y: lblSalaryTitle.frame.maxY, width: salaryView.frame.width, height: salaryView.frame.height / 2));
@@ -105,32 +107,7 @@ class FirstViewController: UIViewController {
         lblSalaryValue.font = UIFont.boldSystemFontOfSize(20);
         salaryView.addSubview(lblSalaryValue);
         salaryView.addSubview(lblSalaryTitle);
-        
-        tipsView = UIView(frame: CGRect(x: salaryView.frame.maxX, y: 5, width: activeView.frame.width / 2 - 5, height: activeView.frame.height / 6));
-        let lblTipsTitle = UILabel(frame: CGRect(x: 0, y: 0, width: tipsView.frame.width, height: tipsView.frame.height / 2));
-        lblTipsTitle.text = "טיפים היום";
-        lblTipsTitle.textAlignment = .Center;
-        lblTipsTitle.font = UIFont.boldSystemFontOfSize(20);
-        btnDecreaseTipsValue = UIButton(type: UIButtonType.System);
-        btnDecreaseTipsValue.frame = CGRect(x: 0, y: lblTipsTitle.frame.maxY, width: tipsView.frame.width / 3 - 10, height: tipsView.frame.height / 2)
-        btnDecreaseTipsValue.tintColor = UIColor.blackColor();
-        btnDecreaseTipsValue.setTitle("-", forState: UIControlState.Normal);
-        btnDecreaseTipsValue.addTarget(self, action: "changeTipsValue:", forControlEvents: UIControlEvents.TouchUpInside);
-        lblTipsValue = UILabel(frame: CGRect(x: btnDecreaseTipsValue.frame.maxX, y: lblTipsTitle.frame.maxY, width: tipsView.frame.width / 3 + 20, height: tipsView.frame.height / 2));
-        lblTipsValue.text = "0₪";
-        lblTipsValue.textAlignment = .Center;
-        lblTipsValue.font = UIFont.boldSystemFontOfSize(20);
-        btnIncreaseTipsValue = UIButton(type: UIButtonType.System);
-        btnIncreaseTipsValue.frame = CGRect(x: lblTipsValue.frame.maxX, y: lblTipsTitle.frame.maxY, width: tipsView.frame.width / 3 - 10, height: tipsView.frame.height / 2)
-        btnIncreaseTipsValue.tintColor = UIColor.blackColor();
-        btnIncreaseTipsValue.setTitle("+", forState: UIControlState.Normal);
-        btnIncreaseTipsValue.addTarget(self, action: "changeTipsValue:", forControlEvents: UIControlEvents.TouchUpInside);
-        tipsView.addSubview(btnDecreaseTipsValue);
-        tipsView.addSubview(lblTipsValue);
-        tipsView.addSubview(btnIncreaseTipsValue);
-        tipsView.addSubview(lblTipsTitle);
-        
-        summaryView = UIView(frame: CGRect(x: 5, y: tipsView.frame.maxY + 5, width: activeView.frame.width - 10, height: activeView.frame.height / 6));
+        summaryView = UIView(frame: CGRect(x: salaryView.frame.maxX, y: 5, width: activeView.frame.width / 2 - 5, height: activeView.frame.height / 6));
         let lblSummaryTitle = UILabel(frame: CGRect(x: 0, y: 0, width: summaryView.frame.width, height: summaryView.frame.height / 2));
         lblSummaryTitle.text = "סה״כ היום";
         lblSummaryTitle.textAlignment = .Center;
@@ -139,22 +116,50 @@ class FirstViewController: UIViewController {
         lblSummaryValue.text = "0₪";
         lblSummaryValue.textAlignment = .Center;
         lblSummaryValue.font = UIFont.boldSystemFontOfSize(20);
-        summaryView.addSubview(lblSummaryTitle);
-        summaryView.addSubview(lblSummaryValue);
         
-        dragView = UIView(frame: CGRect(x: 0, y: summaryView.frame.maxY + 5, width: activeView.frame.width, height: activeView.frame.height / 6 * 4 - 15));
+        summaryView.addSubview(lblSummaryValue);
+        summaryView.addSubview(lblSummaryTitle);
+        
+        tipsView = UIView(frame: CGRect(x: 5, y: summaryView.frame.maxY + 5, width: activeView.frame.width - 10, height: activeView.frame.height / 6));
+        let lblAverageSalaryTitle = UILabel(frame: CGRect(x: 0, y: 0, width: tipsView.frame.width, height: tipsView.frame.height / 2));
+        lblAverageSalaryTitle.text = "שכר ממוצע לשעה";
+        lblAverageSalaryTitle.textAlignment = .Center;
+        lblAverageSalaryTitle.font = UIFont.boldSystemFontOfSize(20);
+        lblAverageSalaryPerHour = UILabel(frame: CGRect(x: 0, y: lblAverageSalaryTitle.frame.maxY, width: tipsView.frame.width, height: tipsView.frame.height / 2));
+        lblAverageSalaryPerHour.text = "0₪";
+        lblAverageSalaryPerHour.textAlignment = .Center;
+        lblAverageSalaryPerHour.font = UIFont.boldSystemFontOfSize(20);
+        tipsView.addSubview(lblAverageSalaryTitle);
+        tipsView.addSubview(lblAverageSalaryPerHour);
+        dragView = UIView(frame: CGRect(x: 0, y: tipsView.frame.maxY + 5, width: activeView.frame.width, height: activeView.frame.height / 6 * 4 - 15));
         target = UIView(frame: CGRect(x: (dragView.frame.width - 150) / 2, y: 25, width: 150, height: 150));
         target.backgroundColor = UIColor(netHex: 0xFFC107);
         target.layer.cornerRadius = 75;
         target.layer.borderColor = UIColor(netHex: 0x757575).CGColor;
         target.layer.borderWidth = 15;
-        textInTarget = UILabel(frame: CGRect(x: (target.frame.width - 80 ) / 2, y: (target.frame.height - 50) / 2, width: 80, height: 50));
+        btnDecreaseTipsValue = UIButton(type: UIButtonType.System);
+        btnDecreaseTipsValue.frame = CGRect(x: 30, y: (target.frame.height - 10)/2, width: 10, height: 10)
+        btnDecreaseTipsValue.tintColor = UIColor.blackColor();
+        btnDecreaseTipsValue.setTitle("-", forState: UIControlState.Normal);
+        btnDecreaseTipsValue.titleLabel!.font = UIFont.boldSystemFontOfSize(20);
+        btnDecreaseTipsValue.addTarget(self, action: "changeTipsValue:", forControlEvents: UIControlEvents.TouchUpInside);
+        btnDecreaseTipsValue.hidden = true;
+        textInTarget = UILabel(frame: CGRect(x: (target.frame.width - target.frame.width / 10 * 6)/2, y: (target.frame.height - 50) / 2, width: target.frame.width / 10 * 6, height: 50));
         textInTarget.text = dailyTips == 0 ? "אין טיפים בקופה" : "\(dailyTips)₪";
         textInTarget.textAlignment = .Center;
         textInTarget.font = UIFont.boldSystemFontOfSize(20);
         textInTarget.textColor = UIColor(netHex: 0x757575);
         textInTarget.numberOfLines = 2;
+        btnIncreaseTipsValue = UIButton(type: UIButtonType.System);
+        btnIncreaseTipsValue.frame = CGRect(x: target.frame.width - 40, y: (target.frame.height - 10)/2, width: 10 , height: 10)
+        btnIncreaseTipsValue.tintColor = UIColor.blackColor();
+        btnIncreaseTipsValue.setTitle("+", forState: UIControlState.Normal);
+        btnIncreaseTipsValue.titleLabel!.font = UIFont.boldSystemFontOfSize(20);
+        btnIncreaseTipsValue.addTarget(self, action: "changeTipsValue:", forControlEvents: UIControlEvents.TouchUpInside);
+        btnIncreaseTipsValue.hidden = true;
+        target.addSubview(btnDecreaseTipsValue);
         target.addSubview(textInTarget);
+        target.addSubview(btnIncreaseTipsValue);
         btn1Sheqel = UIButton(type: UIButtonType.Custom);
         btn1Sheqel.setBackgroundImage(UIImage(named: "sheqel1"), forState: UIControlState.Normal);
         btn1Sheqel.frame = CGRect(x: 2, y: dragView.frame.height / 8, width: 50, height: 50);
@@ -190,6 +195,12 @@ class FirstViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated);
         readPrefernces();
+        if let theActive = active {
+            if theActive{
+                connectUser();
+                calcAndPresentDailys();
+            }
+        }
     }
     
     func readPrefernces(){
@@ -197,6 +208,8 @@ class FirstViewController: UIViewController {
         let tips = prefrences.objectForKey("daily_tips");
         let salary = prefrences.objectForKey("salary_per_hour");
         let sounds = prefrences.objectForKey("sounds");
+        let activing = prefrences.objectForKey("active")
+        let startDate = prefrences.objectForKey("start_time");
         if let theTips = tips{
             dailyTips = theTips as! Int;
         }
@@ -205,6 +218,12 @@ class FirstViewController: UIViewController {
         }
         if let theSound = sounds{
             soundsAllowed = theSound as! Bool;
+        }
+        if let theActive = activing{
+            active = theActive as! Bool;
+        }
+        if let theStartDate = startDate{
+            startTime = theStartDate as! NSDate;
         }
     }
     
@@ -222,36 +241,61 @@ class FirstViewController: UIViewController {
         dailyTips = sender == btnDecreaseTipsValue ? (dailyTips > 0 ? dailyTips-1 : dailyTips) : dailyTips+1;
         let prefrences = NSUserDefaults.standardUserDefaults();
         prefrences.setInteger(dailyTips, forKey: "daily_tips");
-        
+        calcAndPresentDailys()
         /* add voice to coins*/
         /*
         if soundsAllowed{
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { [weak self]() -> Void in
-        let mainBundle = NSBundle.mainBundle();
-        let filePath = mainBundle.pathForResource("coins_sound", ofType: "mp3");
-        if let thePath = filePath{
-        let fileData = NSData(contentsOfFile: thePath);
-        do{
-        self!.audioPlayer = try AVAudioPlayer(data: fileData!);
-        self!.audioPlayer!.delegate = self;
-        if self!.audioPlayer!.prepareToPlay() && self!.audioPlayer!.play(){
-        //audio is now playing...
-        }
-        }catch{
-        print("error eccured");
-        }
-        }else{
-        print("error finding the file");
-        }
+            let mainBundle = NSBundle.mainBundle();
+            let filePath = mainBundle.pathForResource("coins_sound", ofType: "mp3");
+            if let thePath = filePath{
+                let fileData = NSData(contentsOfFile: thePath);
+                do{
+                    //self!.audioPlayer = try AVAudioPlayer(data: fileData!);
+                    //self!.audioPlayer!.delegate = self;
+                    //if self!.audioPlayer!.prepareToPlay() && self!.audioPlayer!.play(){
+                        //audio is now playing...
+                    //}
+                }catch{
+                    print("error eccured");
+                }
+            }else{
+                print("error finding the file");
+            }
         })
         }*/
-        
-        lblTipsValue.text = "\(dailyTips)₪";
-        textInTarget.text = "\(dailyTips)₪";
     }
     
     func openSettings(){
         presentViewController(SettingsViewController(), animated: true, completion: nil);
+    }
+    
+    func CreateManualShift(){
+        
+    }
+    
+    func calcAndPresentDailys(){
+        let now = NSDate();
+        let distance = Shift.distanceOfMinutes(startTime!.timeIntervalSince1970, endTime: now.timeIntervalSince1970);
+        let numberOfHours = distance / 60;
+        let numberOfMinutes = distance % 60;
+        let sumOfHours = Float(numberOfMinutes) / Float(60) + Float(numberOfHours);
+        print("\(sumOfHours)");
+        dailySalary = sumOfHours * salaryPerHour;
+        dailySummary = dailySalary + Float(dailyTips);
+        averageSalaryPerHour = sumOfHours > 1 ? (dailySummary == 0 ? 0 : dailySummary / sumOfHours) : 0;
+        lblAverageSalaryPerHour.text = averageSalaryPerHour == 0 ? "נדרש לפחות שעה לחישוב" : "\(averageSalaryPerHour)₪ לשעה";
+        if dailyTips == 0{
+            textInTarget.text = "אין טיפים בקופה";
+            btnDecreaseTipsValue.hidden = true;
+            btnIncreaseTipsValue.hidden = true;
+        }else{
+            textInTarget.text = "\(dailyTips)₪";
+            btnDecreaseTipsValue.hidden = false;
+            btnIncreaseTipsValue.hidden = false;
+        }
+        lblSummaryValue.text = "\(dailySummary)₪";
+        lblSalaryValue.text = "\(dailySalary)₪";
     }
     
     func connectUser(){
@@ -266,6 +310,7 @@ class FirstViewController: UIViewController {
                 let hourString = Shift.getHourString(components.hour, minutes: components.minute);
                 self!.lblStartTime.text = "שעת התחלה \(hourString)";
                 self!.view.addSubview(self!.lblStartTime);
+                self!.calcAndPresentDailys();
             })
     }
     
@@ -276,6 +321,7 @@ class FirstViewController: UIViewController {
                 self!.activeView.removeFromSuperview();
                 self!.view.addSubview(self!.lblNotActive);
                 self!.lblStartTime.removeFromSuperview();
+                self!.calcAndPresentDailys();
             })
     }
     
@@ -283,6 +329,7 @@ class FirstViewController: UIViewController {
         let prefrences = NSUserDefaults.standardUserDefaults();
         if !active{
             active = true;
+            prefrences.setBool(active, forKey: "active");
             prefrences.setObject(NSDate(), forKey: "start_time");
             btnActive.setTitle("סיים עבודה", forState: UIControlState.Normal);
             connectUser();
@@ -290,11 +337,16 @@ class FirstViewController: UIViewController {
             let atentionController = UIAlertController(title: "סיום משמרת", message: "האם אתה בטוח שברצונך לסיים את המשמרת?", preferredStyle: UIAlertControllerStyle.Alert);
             atentionController.addAction(UIAlertAction(title: "אישור", style: UIAlertActionStyle.Default, handler: { [weak self](action: UIAlertAction) -> Void in
                 self!.active = false;
+                
                 self!.startTime = prefrences.objectForKey("start_time") as! NSDate;
                 self!.btnActive.setTitle("התחל עבודה", forState: UIControlState.Normal);
                 let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
                 appDelegate.insertToDB(self!.startTime!, salaryPerHour: self!.salaryPerHour, tipsCount: self!.dailyTips);
                 self!.allShifts = appDelegate.getShifts();
+                self!.dailyTips = 0;
+                prefrences.setBool(self!.active, forKey: "active");
+                prefrences.setInteger(self!.dailyTips, forKey: "daily_tips");
+                prefrences.setObject(nil, forKey: "start_time")
                 self!.disconnectUser();
                 }))
             atentionController.addAction(UIAlertAction(title: "ביטול", style: UIAlertActionStyle.Cancel, handler: { (action: UIAlertAction) -> Void in
@@ -334,9 +386,13 @@ class FirstViewController: UIViewController {
                 default:
                     break;
                 }
-                self!.lblTipsValue.text = "\(self!.dailyTips)₪";
+                let prefrences = NSUserDefaults.standardUserDefaults();
+                prefrences.setInteger(self!.dailyTips, forKey: "daily_tips");
+                self!.lblSummaryValue.text = "\(self!.dailyTips)₪";
                 self!.textInTarget.text = "\(self!.dailyTips)₪";
+                self!.calcAndPresentDailys();
         }
+        
         
     }
     
