@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
+        <!--היסטוריית משמרות-->
         <scene sceneID="9yE-He-lPr">
             <objects>
                 <viewController id="usk-Ek-XPh" customClass="SecondViewController" customModule="Tipper_iOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,13 +18,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" image="second" id="YhY-NW-sRx"/>
+                    <tabBarItem key="tabBarItem" title="היסטוריית משמרות" image="ic_access_time" id="YhY-NW-sRx"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AgO-mg-vXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="496" y="505"/>
         </scene>
-        <!--Item 1-->
+        <!--טיפר-->
         <scene sceneID="dji-fY-jpd">
             <objects>
                 <viewController id="cQi-n8-Xvs" customClass="FirstViewController" customModule="Tipper_iOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -37,7 +37,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" image="first" id="2bb-yq-5Aw"/>
+                    <tabBarItem key="tabBarItem" title="טיפר" image="ic_launcher" id="2bb-yq-5Aw"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rYW-jY-df4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -63,7 +63,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="ic_access_time" width="36" height="36"/>
+        <image name="ic_launcher" width="36" height="36"/>
     </resources>
 </document>
