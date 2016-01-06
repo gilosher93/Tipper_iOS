@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46A259E31C3B27DE0054ADA2 /* CreateManualShiftVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A259E21C3B27DE0054ADA2 /* CreateManualShiftVC.swift */; };
+		46A259E51C3D0F120054ADA2 /* viewTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46A259E41C3D0F120054ADA2 /* viewTableCell.xib */; };
+		46A259E71C3D104F0054ADA2 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A259E61C3D104F0054ADA2 /* TableViewCell.swift */; };
 		46E760DE1C3053CA00AC3CFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E760DD1C3053CA00AC3CFC /* AppDelegate.swift */; };
 		46E760E01C3053CA00AC3CFC /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E760DF1C3053CA00AC3CFC /* FirstViewController.swift */; };
 		46E760E31C3053CA00AC3CFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46E760E11C3053CA00AC3CFC /* Main.storyboard */; };
@@ -18,7 +21,6 @@
 		46E7610F1C3053F200AC3CFC /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E7610E1C3053F200AC3CFC /* SecondViewController.swift */; };
 		46E761111C30542100AC3CFC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E761101C30542100AC3CFC /* SettingsViewController.swift */; };
 		46E761131C30542A00AC3CFC /* Shift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E761121C30542A00AC3CFC /* Shift.swift */; };
-		46E761151C3091D500AC3CFC /* DatePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E761141C3091D500AC3CFC /* DatePickerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		46A259E21C3B27DE0054ADA2 /* CreateManualShiftVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateManualShiftVC.swift; sourceTree = "<group>"; };
+		46A259E41C3D0F120054ADA2 /* viewTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = viewTableCell.xib; sourceTree = "<group>"; };
+		46A259E61C3D104F0054ADA2 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		46E760DA1C3053CA00AC3CFC /* Tipper_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tipper_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46E760DD1C3053CA00AC3CFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46E760DF1C3053CA00AC3CFC /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -56,7 +61,6 @@
 		46E7610E1C3053F200AC3CFC /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		46E761101C30542100AC3CFC /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		46E761121C30542A00AC3CFC /* Shift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shift.swift; sourceTree = "<group>"; };
-		46E761141C3091D500AC3CFC /* DatePickerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,9 +114,11 @@
 				46E760DD1C3053CA00AC3CFC /* AppDelegate.swift */,
 				46E760DF1C3053CA00AC3CFC /* FirstViewController.swift */,
 				46E7610E1C3053F200AC3CFC /* SecondViewController.swift */,
+				46A259E41C3D0F120054ADA2 /* viewTableCell.xib */,
+				46A259E61C3D104F0054ADA2 /* TableViewCell.swift */,
 				46E761101C30542100AC3CFC /* SettingsViewController.swift */,
 				46E761121C30542A00AC3CFC /* Shift.swift */,
-				46E761141C3091D500AC3CFC /* DatePickerDelegate.swift */,
+				46A259E21C3B27DE0054ADA2 /* CreateManualShiftVC.swift */,
 				46E760E11C3053CA00AC3CFC /* Main.storyboard */,
 				46E760E71C3053CA00AC3CFC /* Assets.xcassets */,
 				46E760E91C3053CA00AC3CFC /* LaunchScreen.storyboard */,
@@ -248,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46E760EB1C3053CA00AC3CFC /* LaunchScreen.storyboard in Resources */,
+				46A259E51C3D0F120054ADA2 /* viewTableCell.xib in Resources */,
 				46E760E81C3053CA00AC3CFC /* Assets.xcassets in Resources */,
 				46E760E31C3053CA00AC3CFC /* Main.storyboard in Resources */,
 			);
@@ -276,9 +283,10 @@
 			files = (
 				46E7610F1C3053F200AC3CFC /* SecondViewController.swift in Sources */,
 				46E760E61C3053CA00AC3CFC /* Tipper_iOS.xcdatamodeld in Sources */,
+				46A259E71C3D104F0054ADA2 /* TableViewCell.swift in Sources */,
 				46E760E01C3053CA00AC3CFC /* FirstViewController.swift in Sources */,
 				46E760DE1C3053CA00AC3CFC /* AppDelegate.swift in Sources */,
-				46E761151C3091D500AC3CFC /* DatePickerDelegate.swift in Sources */,
+				46A259E31C3B27DE0054ADA2 /* CreateManualShiftVC.swift in Sources */,
 				46E761131C30542A00AC3CFC /* Shift.swift in Sources */,
 				46E761111C30542100AC3CFC /* SettingsViewController.swift in Sources */,
 			);
@@ -421,6 +429,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Tipper_iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "example.Tipper-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -432,6 +441,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Tipper_iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "example.Tipper-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -15,13 +15,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let entityName = "Shift";
     
-    func insertToDB(startTime: NSDate, salaryPerHour: Float, tipsCount: Int){
+    func insertToDB(startTime: NSDate, endTime: NSDate, salaryPerHour: Float, tipsCount: Int){
         let shift = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: managedObjectContext) as! Shift;
         shift.startTime = startTime;
-        shift.endTime = NSDate();
+        shift.endTime = endTime;
         shift.salaryPerHour = salaryPerHour;
         shift.tipsCount = tipsCount;
-        shift.id = 1; //TODO
+        shift.id = getShiftsCount();
         do{
             try managedObjectContext.save();
             print("Successfully save do db");
@@ -30,7 +30,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("unSuccessfully save do db");
         }
     }
-    
+    func getShiftsCount()->Int{
+        let shifts: [Shift]?;
+        shifts = getShifts();
+        if let theShifts = shifts{
+            return theShifts.count;
+        }
+        return 0;
+    }
     func getShifts()->[Shift]?{
         let shifts: [Shift]?;
         let fetchRequest = NSFetchRequest(entityName: entityName);
@@ -41,6 +48,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         return nil;
+    }
+    
+    func deleteFromDb(shiftId: Int)->Bool{
+        let fetchRequest = NSFetchRequest(entityName: entityName);
+        do{
+            let shifts = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Shift];
+            var shiftToDelete : Shift?;
+            for shift in shifts{
+                if shift.id == shiftId{
+                    shiftToDelete = shift;
+                }
+            }
+            if let theShiftToDelete = shiftToDelete{
+                managedObjectContext.deleteObject(theShiftToDelete);
+            }
+            try managedObjectContext.save();
+            return true;
+        }catch{
+            
+        }
+        return false;
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {

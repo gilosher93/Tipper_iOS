@@ -70,6 +70,12 @@ class Shift: NSManagedObject {
         }
     }
     
+    var averageSalaryPerHour: Float{
+        get{
+            return getSumOfHours() > 1 ? (summary == 0 ? 0 : summary / getSumOfHours()) : 0;
+        }
+    }
+    
     static func distanceOfMinutes(startTime: Double, endTime: Double)->Int{
         let distance = startTime.distanceTo(endTime) / 60;
         if distance < 0 {
@@ -102,6 +108,26 @@ class Shift: NSManagedObject {
             minutesString = "0\(minutesString)"
         }
         return "\(hoursString):\(minutesString)";
+    }
+    
+    static func getHourString(date: NSDate)->String{
+        let hour = NSCalendar.currentCalendar().component(NSCalendarUnit.Hour, fromDate: date);
+        let minutes = NSCalendar.currentCalendar().component(NSCalendarUnit.Minute, fromDate: date);
+        return Shift.getHourString(hour, minutes: minutes);
+    }
+    
+    static func getDate(date: NSDate)->String{
+        let dayOfMonth = NSCalendar.currentCalendar().component(NSCalendarUnit.Day, fromDate: date);
+        var dayOfMonthString = String(dayOfMonth);
+        if dayOfMonth < 10{
+            dayOfMonthString = "0\(dayOfMonthString)"
+        }
+        let month = NSCalendar.currentCalendar().component(NSCalendarUnit.Month, fromDate: date);
+        var monthString = String(month);
+        if month < 10{
+            monthString = "0\(monthString)"
+        }
+        return "\(dayOfMonthString)/\(monthString)";
     }
     
 }

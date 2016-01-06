@@ -30,7 +30,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         statusBar.backgroundColor = UIColor(netHex: 0x1F2839);
         view.addSubview(statusBar);
         
-        view.backgroundColor = UIColor(netHex: 0x0288D1);
+        view.backgroundColor = UIColor(netHex: 0x90CAF9);
         navBar = UINavigationBar(frame: CGRect(x: 0, y: UIApplication.sharedApplication().statusBarFrame.height, width: view.frame.width, height: 40))
         let navItem = UINavigationItem(title: "הגדרות");
         navItem.leftBarButtonItem = UIBarButtonItem(title: "חזור", style: UIBarButtonItemStyle.Done, target: self, action: "backToHome");
@@ -81,6 +81,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         btnSave.setTitle("שמור שינויים", forState: UIControlState.Normal);
         btnSave.backgroundColor = UIColor(netHex: 0xFFC107);
         btnSave.tintColor = UIColor.blackColor();
+        btnSave.titleLabel!.font = UIFont.boldSystemFontOfSize(18);
         btnSave.addTarget(self, action: "saveSettings:", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(btnSave);
     }
@@ -103,6 +104,9 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     }
     
     static func checkNumberString(str: NSString)->Bool{
+        if str.length == 0{
+            return false;
+        }
         var thereIsPoint = false;
         for i in 0..<(str as NSString).length{
             let asciiNum = Int(str.characterAtIndex(i));

@@ -8,7 +8,6 @@
         <!--Item 2-->
         <scene sceneID="5Ii-57-aZw">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZRP-kC-KdE" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="0Wk-9j-W7l" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xzF-97-5vV"/>
@@ -21,13 +20,13 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 2" id="UXb-pF-S4T"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZRP-kC-KdE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="842" y="1204"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="WAd-c5-fGv">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="62i-Cb-Y9J" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="XmV-cq-e1b" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="S9m-Qf-c4V"/>
@@ -40,13 +39,13 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="Q5P-Cr-8i3"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="62i-Cb-Y9J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="842" y="544"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="V77-ay-fJw">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="y25-TA-u3d" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController id="RsR-fj-Fjd" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Ueo-TF-gXa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -58,6 +57,7 @@
                         <segue destination="0Wk-9j-W7l" kind="relationship" relationship="viewControllers" id="YCK-VC-6u4"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y25-TA-u3d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="22" y="876"/>
         </scene>
