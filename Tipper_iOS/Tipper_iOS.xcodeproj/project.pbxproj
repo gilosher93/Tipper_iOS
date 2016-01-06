@@ -44,7 +44,7 @@
 		46A259E21C3B27DE0054ADA2 /* CreateManualShiftVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateManualShiftVC.swift; sourceTree = "<group>"; };
 		46A259E41C3D0F120054ADA2 /* viewTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = viewTableCell.xib; sourceTree = "<group>"; };
 		46A259E61C3D104F0054ADA2 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
-		46E760DA1C3053CA00AC3CFC /* Tipper_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tipper_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		46E760DA1C3053CA00AC3CFC /* Tipper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tipper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46E760DD1C3053CA00AC3CFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46E760DF1C3053CA00AC3CFC /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		46E760E21C3053CA00AC3CFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 		46E760DB1C3053CA00AC3CFC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				46E760DA1C3053CA00AC3CFC /* Tipper_iOS.app */,
+				46E760DA1C3053CA00AC3CFC /* Tipper.app */,
 				46E760F11C3053CA00AC3CFC /* Tipper_iOSTests.xctest */,
 				46E760FC1C3053CA00AC3CFC /* Tipper_iOSUITests.xctest */,
 			);
@@ -163,7 +163,7 @@
 			);
 			name = Tipper_iOS;
 			productName = Tipper_iOS;
-			productReference = 46E760DA1C3053CA00AC3CFC /* Tipper_iOS.app */;
+			productReference = 46E760DA1C3053CA00AC3CFC /* Tipper.app */;
 			productType = "com.apple.product-type.application";
 		};
 		46E760F01C3053CA00AC3CFC /* Tipper_iOSTests */ = {
@@ -428,11 +428,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Tipper_iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "example.Tipper-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = tipper.Tipper;
+				PRODUCT_NAME = Tipper;
 			};
 			name = Debug;
 		};
@@ -440,11 +442,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Tipper_iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "example.Tipper-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = tipper.Tipper;
+				PRODUCT_NAME = Tipper;
 			};
 			name = Release;
 		};

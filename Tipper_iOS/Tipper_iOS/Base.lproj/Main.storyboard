@@ -8,7 +8,7 @@
         <!--היסטוריית משמרות-->
         <scene sceneID="9yE-He-lPr">
             <objects>
-                <viewController id="usk-Ek-XPh" customClass="SecondViewController" customModule="Tipper_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="usk-Ek-XPh" customClass="SecondViewController" customModule="Tipper" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gMi-fw-BWG"/>
                         <viewControllerLayoutGuide type="bottom" id="rpt-Dd-TtZ"/>
@@ -27,7 +27,7 @@
         <!--טיפר-->
         <scene sceneID="dji-fY-jpd">
             <objects>
-                <viewController id="cQi-n8-Xvs" customClass="FirstViewController" customModule="Tipper_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="cQi-n8-Xvs" customClass="FirstViewController" customModule="Tipper" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RWy-cK-ZVX"/>
                         <viewControllerLayoutGuide type="bottom" id="WHX-vr-Jw0"/>
